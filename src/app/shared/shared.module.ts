@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { ArticleListComponent, ArticleMetaComponent, ArticlePreviewComponent } from './article-helpers';
+import { QualifierListComponent, QualifierMetaComponent, QualifierPreviewComponent } from './qualifier-helpers';
 import { FavoriteButtonComponent, FollowButtonComponent } from './buttons';
 import { ListErrorsComponent } from './list-errors.component';
 import { ShowAuthedDirective } from './show-authed.directive';
@@ -21,6 +22,9 @@ import { ShowAuthedDirective } from './show-authed.directive';
     ArticleListComponent,
     ArticleMetaComponent,
     ArticlePreviewComponent,
+    QualifierListComponent,
+    QualifierMetaComponent,
+    QualifierPreviewComponent,
     FavoriteButtonComponent,
     FollowButtonComponent,
     ListErrorsComponent,
@@ -30,6 +34,9 @@ import { ShowAuthedDirective } from './show-authed.directive';
     ArticleListComponent,
     ArticleMetaComponent,
     ArticlePreviewComponent,
+    QualifierListComponent,
+    QualifierMetaComponent,
+    QualifierPreviewComponent,
     CommonModule,
     FavoriteButtonComponent,
     FollowButtonComponent,

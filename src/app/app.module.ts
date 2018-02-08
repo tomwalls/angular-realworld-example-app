@@ -21,6 +21,7 @@ import {
   ProfilesService,
   SharedModule,
   TagsService,
+  QualifiersService,
   UserService,
   HttpTokenInterceptor
 } from './shared';
@@ -53,6 +54,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([]);
     JwtService,
     ProfilesService,
     TagsService,
+    QualifiersService,
     UserService
   ],
   bootstrap: [AppComponent]

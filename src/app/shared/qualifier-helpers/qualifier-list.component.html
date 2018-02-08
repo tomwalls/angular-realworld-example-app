@@ -1,0 +1,54 @@
+<div class="qualifier-preview">
+  <table style="width: 100%">
+      <tr>
+          <th *ngFor="let col of columns">
+              {{col}}
+          </th>
+      </tr>
+      <tr *ngFor="let qualifier of results">
+        <td>{{ qualifier.date | date: 'dd/MM/yyyy'}}</td>
+        <td>{{ qualifier.time}}</td>
+        <td>{{ qualifier.course}}</td>
+        <td>{{ qualifier.system }}</td>
+        <td>{{ qualifier.horse }}</td>
+        <td>{{ qualifier.status }}</td>
+        <td><button type="button" class="btn btn-primary"
+          tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Button with tooltip
+  </button></td>
+        <td><button type="button" class="btn btn-primary"
+          tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Button with tooltip
+  </button></td>
+      </tr>
+      <!-- <app-qualifier-preview
+        *ngFor="let qualifier of results"
+        [qualifier]="qualifier">
+      </app-qualifier-preview> -->
+  </table>
+</div>
+
+<div class="app-qualifier-preview"
+  [hidden]="!loading">
+  Loading qualifiers...
+</div>
+
+<div class="app-qualifier-preview"
+  [hidden]="loading || results.length">
+  No qualifiers are here... yet.
+</div>
+
+<nav [hidden]="loading || totalPages.length <= 1">
+  <ul class="pagination">
+
+    <li class="page-item"
+      [ngClass]="{'active': pageNumber === currentPage}"
+      *ngFor="let pageNumber of totalPages"
+      (click)="setPageTo(pageNumber)">
+
+      <a class="page-link" >{{ pageNumber }}</a>
+
+    </li>
+
+  </ul>
+</nav>

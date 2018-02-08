@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ArticleListConfig, TagsService, UserService } from '../shared';
+import { ArticleListConfig, TagsService, UserService, QualifiersService } from '../shared';
+import { Qualifier } from '../shared/models/qualifier.model';
 
 @Component({
   selector: 'app-home-page',
@@ -12,6 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private tagsService: TagsService,
+    private qualifiersService: QualifiersService,
     private userService: UserService
   ) {}
 
@@ -21,7 +23,9 @@ export class HomeComponent implements OnInit {
     filters: {}
   };
   tags: Array<string> = [];
+  qualifiers: Array<Qualifier> = [];
   tagsLoaded = false;
+  qualifiersLoaded = false;
 
   ngOnInit() {
     this.userService.isAuthenticated.subscribe(
@@ -32,16 +36,22 @@ export class HomeComponent implements OnInit {
         if (authenticated) {
           this.setListTo('feed');
         } else {
-          this.setListTo('all');
+          this.setListTo('qualifiers');
         }
       }
     );
 
-    this.tagsService.getAll()
+    this.qualifiersService.getAll()
+    .subscribe(qualifiers => {
+      this.qualifiers = qualifiers;
+      this.qualifiersLoaded = true;
+    });
+
+    /* this.tagsService.getAll()
     .subscribe(tags => {
       this.tags = tags;
       this.tagsLoaded = true;
-    });
+    }); */
   }
 
   setListTo(type: string = '', filters: Object = {}) {
@@ -50,7 +60,6 @@ export class HomeComponent implements OnInit {
       this.router.navigateByUrl('/login');
       return;
     }
-
     // Otherwise, set the list object
     this.listConfig = {type: type, filters: filters};
   }
