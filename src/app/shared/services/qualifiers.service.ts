@@ -20,8 +20,8 @@ export class QualifiersService {
     // Convert any filters over to Angular's URLSearchParams
     const params = {};
 
-    this.startDateFormated = new Date(startDate.year+ "-" +startDate.month +"-"+startDate.day+" 00:00");
-    this.endDateFormated = new Date(endDate.year+ "-" +endDate.month +"-"+endDate.day+" 23:59");
+    this.startDateFormated = new Date(startDate.year + '-' + startDate.month + '-' + startDate.day + ' 00:00');
+    this.endDateFormated = new Date(endDate.year + '-' + endDate.month + '-' + endDate.day + ' 23:59');
 
     console.log(startDate);
     console.log(endDate);
@@ -44,8 +44,8 @@ export class QualifiersService {
 
   getAll( startDate: NgbDateStruct, endDate: NgbDateStruct): Observable<[Qualifier]> {
 
-    this.startDateFormated = new Date(startDate.year+ "-" +startDate.month +"-"+startDate.day+" 00:00");
-    this.endDateFormated = new Date(endDate.year+ "-" +endDate.month +"-"+endDate.day+" 23:59");
+    this.startDateFormated = new Date(startDate.year + '-' + startDate.month + '-' + startDate.day + ' 00:00');
+    this.endDateFormated = new Date(endDate.year + '-' + endDate.month + '-' + endDate.day + ' 23:59');
 
         return this.apiService.post('/qualifier/search', {StartDate: this.startDateFormated, EndDate: this.endDateFormated})
         .pipe(map(data => data));

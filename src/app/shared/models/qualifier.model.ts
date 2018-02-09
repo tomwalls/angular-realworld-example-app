@@ -9,16 +9,16 @@ export interface Qualifier {
   subSystemId : number;
   subSystem : string;
   date: Date;
-  course : string;
-  time : string;
-  horse : string;
-  notes : string;
-  stake : number;
-  maxBFSP : number;
-  ptsBet : number;
-  win : number;
-  place : number;
-  winBsp : number;
-  placeBsp : number;
-  ptsReturned : number;
+  course: string;
+  time: string;
+  horse: string;
+  notes: string;
+  stake: number;
+  maxBFSP: number;
+  ptsBet: number;
+  win: number;
+  place: number;
+  winBsp: number;
+  placeBsp: number;
+  ptsReturned: number;
 }
