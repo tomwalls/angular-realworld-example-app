@@ -6,8 +6,8 @@ export interface Qualifier {
   mode: string;
   systemId: number;
   system: string;
-  subSystemId : number;
-  subSystem : string;
+  subSystemId: number;
+  subSystem: string;
   date: Date;
   course: string;
   time: string;
