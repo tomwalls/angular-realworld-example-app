@@ -10,6 +10,7 @@ import { EditorModule } from './editor/editor.module';
 import { HomeModule } from './home/home.module';
 import { ProfileModule } from './profile/profile.module';
 import { SettingsModule } from './settings/settings.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {
   ApiService,
   ArticlesService,
@@ -43,7 +44,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([]);
     ProfileModule,
     rootRouting,
     SharedModule,
-    SettingsModule
+    SettingsModule,
+    NgbModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},

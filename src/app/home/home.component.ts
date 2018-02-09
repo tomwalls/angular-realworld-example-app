@@ -41,11 +41,11 @@ export class HomeComponent implements OnInit {
       }
     );
 
-    this.qualifiersService.getAll()
+    /* this.qualifiersService.getAll()
     .subscribe(qualifiers => {
       this.qualifiers = qualifiers;
       this.qualifiersLoaded = true;
-    });
+    }); */
 
     /* this.tagsService.getAll()
     .subscribe(tags => {
