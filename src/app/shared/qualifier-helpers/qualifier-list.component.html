@@ -1,13 +1,12 @@
-<p>Example of the range selection</p>
-    <div>
-      <div class="input-group">
-        <input class="form-control" placeholder="start" [(ngModel)]="model">
-        <input class="form-control" placeholder="end" [(ngModel)]="model2">
-        <button class="btn btn-outline-secondary" name="first" (click)="ToggleRangePicker()" type="button">
-            <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-          </button>
-      </div>
-    </div>
+<div>
+  <div class="input-group">
+    <input class="form-control" placeholder="start" [(ngModel)]="model">
+    <input class="form-control" placeholder="end" [(ngModel)]="model2">
+    <button class="btn btn-outline-secondary" name="first" (click)="ToggleRangePicker()" type="button">
+        <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+      </button>
+  </div>
+</div>
 
 <div *ngIf="edited">
     <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t">
@@ -39,11 +38,14 @@
         <td>{{ qualifier.course}}</td>
         <td>{{ qualifier.system }}</td>
         <td>{{ qualifier.horse }}</td>
-        <td>{{ qualifier.status }}</td>
-        <td></td>
-        <td></td>
-        <td><button class="btn btn-s btn-outline-primary" (click)="open(content)">Override</button></td>
-        <td><button class="btn btn-s btn-outline-danger" (click)="open(content)">Cancel</button></td>
+        <td>{{ qualifier?.automatedBet?.status }}</td>
+        <td><span [hidden]="qualifier.win === 1" [ngClass]="{'custom-badge custom-badge-error': qualifier.win === 0}">
+          {{ qualifier.win === 1 ? "Win" : qualifier.win === 0 ? "Lose":"Pending" }}</span>
+          <span [hidden]="qualifier.win === 0" [ngClass]="{'custom-badge custom-badge-success': qualifier.win === 1}">
+              {{ qualifier.win === 1 ? "Win" : qualifier.win === 0 ? "Lose":"Pending" }}</span></td>
+        <td>{{ qualifier.winBsp }}</td>
+        <td><button class="btn btn-sm btn-outline-primary" (click)="open(content)">Override</button></td>
+        <td><button class="btn btn-sm btn-outline-danger" (click)="open(content)">Cancel</button></td>
       </tr>
       <!-- <app-qualifier-preview
         *ngFor="let qualifier of results"

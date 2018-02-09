@@ -5,3 +5,7 @@
 .tag-pill{
   cursor:pointer;
 }
+
+.active1{
+  color: cornflowerblue!important;
+}

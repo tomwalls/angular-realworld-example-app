@@ -27,3 +27,46 @@
 .showen {
   display: block;
 }
+
+.custom-badge {
+
+    font-size: inherit;
+    padding: .05rem .45rem;
+    border-radius: .2rem;
+    background-color: transparent;
+    background-image: none;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid;
+
+}
+.custom-badge:hover {
+}
+
+.custom-badge-primary {
+  color: #007bff;
+  border-color: #007bff;
+}
+.custom-badge-error {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+.custom-badge-warning {
+  color: #f89406;
+  border-color: #f89406;
+}
+.custom-badge-success {
+  color: #468847;
+  border-color: #468847;
+}
+.custom-badge-badge-info {
+  color: #3a87ad;
+  border-color: #3a87ad;
+}
+.custom-badge-inverse {
+  color: #333333;
+  border-color: #333333;
+}
+

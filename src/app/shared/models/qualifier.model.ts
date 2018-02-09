@@ -21,4 +21,13 @@ export interface Qualifier {
   winBsp: number;
   placeBsp: number;
   ptsReturned: number;
+  automatedBet: AutomatedBet;
+}
+
+export interface AutomatedBet {
+  id: number;
+  automatedBetTransactionId: number;
+  status: string;
+  placedDate: Date;
+  FailureReason: string;
 }

@@ -131,7 +131,7 @@ export class QualifierListComponent {
     } else {
       this.toDate = null;
       this.fromDate = date;
-      this.model2 = this.toDate.day + "-" + this.toDate.month + "-" + this.toDate.year;
+      this.model = this.fromDate.day + "-" + this.fromDate.month + "-" + this.fromDate.year;
       console.log(this.model2);
     }
   }

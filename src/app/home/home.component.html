@@ -2,8 +2,8 @@
 
   <div class="banner" *showAuthed="false">
     <div class="container">
-      <h1 class="logo-font">conduit</h1>
-      <p>A place to share your <i>Angular 2</i> knowledge.</p>
+      <h1 class="logo-font">System Tracker</h1>
+      <p>A place to see how well you are doing!</p>
     </div>
   </div>
 
@@ -15,27 +15,27 @@
           <ul class="nav nav-pills outline-active">
             <li class="nav-item">
               <a class="nav-link"
-                 [ngClass]="{'active': listConfig.type === 'feed'}"
+                 [ngClass]="{'active1': listConfig.type === 'feed'}"
                  (click)="setListTo('feed')">
                  Your Feed
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link"
-                 [ngClass]="{'active': listConfig.type === 'all' && !listConfig.filters.tag}"
+                 [ngClass]="{'active1': listConfig.type === 'all' && !listConfig.filters.tag}"
                  (click)="setListTo('all')">
                  Global Feed
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link"
-                 [ngClass]="{'active': listConfig.type === 'qualifiers' && !listConfig.filters.tag}"
+                 [ngClass]="{'active1': listConfig.type === 'qualifiers' && !listConfig.filters.tag}"
                  (click)="setListTo('qualifiers')">
                  Qualifier Feed
               </a>
             </li>
             <li class="nav-item" [hidden]="!listConfig.filters.tag">
-              <a class="nav-link active">
+              <a class="nav-link active1">
                 <i class="ion-pound"></i> {{ listConfig.filters.tag }}
               </a>
             </li>
