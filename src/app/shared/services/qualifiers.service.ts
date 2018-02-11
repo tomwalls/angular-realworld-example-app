@@ -23,8 +23,8 @@ export class QualifiersService {
     this.startDateFormated = new Date(startDate.year + '-' + startDate.month + '-' + startDate.day + ' 00:00');
     this.endDateFormated = new Date(endDate.year + '-' + endDate.month + '-' + endDate.day + ' 23:59');
 
-    console.log(startDate);
-    console.log(endDate);
+    console.log(this.startDateFormated);
+    console.log(this.endDateFormated);
 
     Object.keys(config.filters)
     .forEach((key) => {

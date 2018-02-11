@@ -42,7 +42,8 @@ export class ApiService {
 
     return this.http.post(
       `${environment.api_url}${path}`,
-      {Username:"jim", Password:"password"}, {headers:this.headersConfig}
+      //{Username:"jim", Password:"password"}, {headers:this.headersConfig}
+      JSON.stringify(body), {headers:this.headersConfig}
     ).pipe(catchError(this.formatErrors));
   }
 
