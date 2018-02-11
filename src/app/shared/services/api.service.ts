@@ -18,7 +18,8 @@ export class ApiService {
 
   headersConfig = {
     'Content-Type': 'application/json',
-    'Accept': 'application/json'
+    'Accept': 'application/json',
+    'Credentials': 'true'
   };
 
   private formatErrors(error: any) {
@@ -41,7 +42,7 @@ export class ApiService {
 
     return this.http.post(
       `${environment.api_url}${path}`,
-      JSON.stringify(body), {headers:this.headersConfig}
+      {Username:"jim", Password:"password"}, {headers:this.headersConfig}
     ).pipe(catchError(this.formatErrors));
   }
 

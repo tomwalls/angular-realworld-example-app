@@ -100,6 +100,8 @@ export class QualifierListComponent {
       this.query.filters.offset =  (this.limit * (this.currentPage - 1));
     }
 
+
+
     this.qualifiersService.query(this.query, this.fromDate, this.toDate)
     .subscribe(data => {
       this.loading = false;
