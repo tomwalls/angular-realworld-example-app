@@ -24,7 +24,7 @@ import {
   TagsService,
   QualifiersService,
   UserService,
-  HttpTokenInterceptor
+ // HttpTokenInterceptor
 } from './shared';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([]);
@@ -48,7 +48,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([]);
     NgbModule.forRoot()
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},
+   // { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},
     ApiService,
     ArticlesService,
     AuthGuard,

@@ -27,30 +27,52 @@ export class UserService {
   // Verify JWT in localstorage with server & load user's info.
   // This runs once on application startup.
   populate() {
-    // If JWT detected, attempt to get & store user's info
-    if (this.jwtService.getToken()) {
-      this.apiService.get('/user')
+
+    this.apiService.post('/auth')
       .subscribe(
-        data => this.setAuth(data.user),
+        data => this.setAuth(data),
+        err => this.purgeAuth());
+
+
+
+    /* // If JWT detected, attempt to get & store user's info
+    if (this.jwtService.getToken()) {
+      this.apiService.post('/auth')
+      .subscribe(
+        data => this.setAuth(data),
         err => this.purgeAuth()
       );
     } else {
       // Remove any potential remnants of previous auth states
       this.purgeAuth();
-    }
+    } */
   }
 
   setAuth(user: User) {
-    // Save JWT sent from server in localstorage
-    this.jwtService.saveToken(user.bearerToken);
+
+    /* // Save JWT sent from server in localstorage
+    this.jwtService.saveToken(user.bearerToken, user.refreshToken);
+    */
     // Set current user data into observable
     this.currentUserSubject.next(user);
     // Set isAuthenticated to true
     this.isAuthenticatedSubject.next(true);
   }
 
+
+  sessionToToken(user: User)
+  {
+      this.apiService.get('/session-to-token')
+      .subscribe(
+        data => this.jwtService.saveToken(user.bearerToken, user.refreshToken),
+        err => this.purgeAuth()
+      );
+
+  }
+
   purgeAuth() {
-    // Remove JWT from localstorage
+    console.log("purgeAuth");
+    // Remove JWT from locastorage
     this.jwtService.destroyToken();
     // Set current user to an empty object
     this.currentUserSubject.next({} as User);
@@ -58,11 +80,17 @@ export class UserService {
     this.isAuthenticatedSubject.next(false);
   }
 
-  attemptAuth(type, credentials): Observable<User> {
-    const route = (type === 'login') ? '/auth' : '/register';
-    console.log(JSON.stringify(credentials));
+  logout() {
+    this.apiService.post('/auth/logout');
+  }
 
-    return this.apiService.post('' + route, {credentials })
+  attemptAuth(type, username, password): Observable<User> {
+    const route = (type === 'login') ? '/auth/credentials' : '/register';
+    //console.log(JSON.stringify(credentials));
+    console.log(JSON.stringify(username));
+    console.log(JSON.stringify(password));
+
+    return this.apiService.post('' + route, {UserName: username, Password: password })
       .pipe(map(
       data => {
         console.log(data);

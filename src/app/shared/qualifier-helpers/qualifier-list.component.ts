@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Qualifier, QualifierListConfig } from '../models';
-import { QualifiersService } from '../services';
+import { QualifiersService, UserService } from '../services';
 import {NgbModule, NgbModal, ModalDismissReasons, NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 import {Subject} from 'rxjs/Subject';
 import {debounceTime} from 'rxjs/operator/debounceTime';
@@ -27,6 +27,7 @@ const after = (one: NgbDateStruct, two: NgbDateStruct) =>
 export class QualifierListComponent {
   constructor (
     private qualifiersService: QualifiersService,
+    private userService: UserService,
     private modalService: NgbModal,
     calendar: NgbCalendar
   ) {
@@ -100,8 +101,6 @@ export class QualifierListComponent {
       this.query.filters.offset =  (this.limit * (this.currentPage - 1));
     }
 
-
-
     this.qualifiersService.query(this.query, this.fromDate, this.toDate)
     .subscribe(data => {
       this.loading = false;
@@ -110,7 +109,9 @@ export class QualifierListComponent {
 
       // Used from http://www.jstips.co/en/create-range-0...n-easily-using-one-line/
       //this.totalPages = Array.from(new Array(Math.ceil(data.length / this.limit)), (val, index) => index + 1);
-    });
+    },
+    err => this.userService.purgeAuth());
+    ;
   }
 
   ToggleRangePicker()

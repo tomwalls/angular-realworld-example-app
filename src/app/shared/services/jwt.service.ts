@@ -8,7 +8,7 @@ export class JwtService {
     return window.localStorage['jwtToken'];
   }
 
-  saveToken(token: String) {
+  saveToken(token: String, refreshToken: String) {
     window.localStorage['jwtToken'] = token;
   }
 

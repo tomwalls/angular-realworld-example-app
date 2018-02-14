@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
         if (authenticated) {
           this.setListTo('feed');
         } else {
-          this.setListTo('qualifiers');
+          this.setListTo('feed');
         }
       }
     );
@@ -55,11 +55,18 @@ export class HomeComponent implements OnInit {
   }
 
   setListTo(type: string = '', filters: Object = {}) {
-    // If feed is requested but user is not authenticated, redirect to login
-    if (type === 'feed' && !this.isAuthenticated) {
+    // If not authenticated, redirect to login
+    if (!this.isAuthenticated) {
       this.router.navigateByUrl('/login');
       return;
     }
+
+   /*  // If feed is requested but user is not authenticated, redirect to login
+    if (type === 'feed' && !this.isAuthenticated) {
+      this.router.navigateByUrl('/login');
+      return;
+    } */
+
     // Otherwise, set the list object
     this.listConfig = {type: type, filters: filters};
   }
