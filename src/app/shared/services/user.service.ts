@@ -81,7 +81,9 @@ export class UserService {
   }
 
   logout() {
-    this.apiService.post('/auth/logout');
+    this.apiService.post('/auth/logout')
+    .subscribe(
+      data => this.purgeAuth());
   }
 
   attemptAuth(type, username, password): Observable<User> {
@@ -90,7 +92,7 @@ export class UserService {
     console.log(JSON.stringify(username));
     console.log(JSON.stringify(password));
 
-    return this.apiService.post('' + route, {UserName: username, Password: password })
+    return this.apiService.post('' + route, {UserName: username, Password: password, AutoLogin: true })
       .pipe(map(
       data => {
         console.log(data);
