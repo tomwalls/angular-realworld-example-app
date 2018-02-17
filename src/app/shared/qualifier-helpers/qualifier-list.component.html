@@ -1,37 +1,56 @@
-<div>
-  <div class="input-group">
-    <input class="form-control" placeholder="start" [(ngModel)]="model">
-    <input class="form-control" placeholder="end" [(ngModel)]="model2">
-    <button class="btn btn-outline-secondary" name="first" (click)="ToggleRangePicker()" type="button">
-        <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
-      </button>
-  </div>
-</div>
 
-<div *ngIf="edited">
-    <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t">
-      </ngb-datepicker>
-
-      <ng-template #t let-date="date" let-focused="focused">
-        <span class="custom-day"
-              [class.focused]="focused"
-              [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
-              [class.faded]="isHovered(date) || isInside(date)"
-              (mouseenter)="hoveredDate = date"
-              (mouseleave)="hoveredDate = null">
-          {{ date.day }}
-        </span>
-      </ng-template>
-</div>
 
 
 <div class="qualifier-preview">
 
-    <div *ngIf="summary" class="SummaryWrapper">
-      <div class="SummaryBox">{{ summary.selections }}</div>
-      <div class="SummaryBox">{{ summary.selections }}</div>
-      <div class="SummaryBox">{{ summary.selections }}</div>
-      <div class="SummaryBox">{{ summary.selections }}</div>
+
+    <div *ngIf="summary" class="row">
+        <div class="col-xs-6">
+            <div class="box">
+                <div>
+                    <div class="input-group">
+                      <input class="form-control" placeholder="start" [(ngModel)]="model">
+                      <input class="form-control" placeholder="end" [(ngModel)]="model2">
+                      <button class="btn btn-outline-secondary" name="first" (click)="ToggleRangePicker()" type="button">
+                          <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                        </button>
+                    </div>
+                  </div>
+
+                  <div *ngIf="edited">
+                      <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t">
+                        </ngb-datepicker>
+
+                        <ng-template #t let-date="date" let-focused="focused">
+                          <span class="custom-day"
+                                [class.focused]="focused"
+                                [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
+                                [class.faded]="isHovered(date) || isInside(date)"
+                                (mouseenter)="hoveredDate = date"
+                                (mouseleave)="hoveredDate = null">
+                            {{ date.day }}
+                          </span>
+                        </ng-template>
+                  </div>
+
+            </div>
+        </div>
+        <div class="col-xs">
+            <div class="box">Selections: {{ summary.selections }}</div>
+        </div>
+        <div class="col-xs">
+            <div class="box">Wins: {{ summary.wins }}</div>
+        </div>
+        <div class="col-xs">
+            <div class="box">Strike Rate: {{ summary.strikeRate | number:'1.1-2' }}</div>
+        </div>
+        <div class="col-xs">
+            <div class="box">Return: {{ summary.return }}</div>
+        </div>
+        <div class="col-xs">
+            <div class="box">Profit: {{ summary.profit }}</div>
+        </div>
+
     </div>
 
   <table style="width: 100%">

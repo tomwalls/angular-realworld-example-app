@@ -7,10 +7,55 @@
     </div>
   </div>
 
-  <div class="container page">
-    <div class="row">
+  <div class="row">
+    <div class="col-xs-12 col-sm-3 col-md-2 col-lg-1">
+      <div class="box-row"></div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-8 col-lg-10">
+      <div class="box-row">
 
-      <div class="col-md-9">
+          <div class="feed-toggle">
+              <ul class="nav nav-pills outline-active">
+                <li class="nav-item">
+                  <a class="nav-link"
+                     [ngClass]="{'active1': listConfig.type === 'feed'}"
+                     (click)="setListTo('feed')">
+                     Your Feed
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"
+                     [ngClass]="{'active1': listConfig.type === 'all' && !listConfig.filters.tag}"
+                     (click)="setListTo('all')">
+                     Global Feed
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"
+                     [ngClass]="{'active1': listConfig.type === 'qualifiers' && !listConfig.filters.tag}"
+                     (click)="setListTo('qualifiers')">
+                     Qualifier Feed
+                  </a>
+                </li>
+                <li class="nav-item" [hidden]="!listConfig.filters.tag">
+                  <a class="nav-link active1">
+                    <i class="ion-pound"></i> {{ listConfig.filters.tag }}
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <app-qualifier-list [limit]="10" [config]="listConfig"></app-qualifier-list>
+
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-3 col-md-2 col-lg-1">
+      <div class="box-row"></div>
+    </div>
+  </div>
+
+    <!-- <div class="row">
+      <div class="col-xs">
         <div class="feed-toggle">
           <ul class="nav nav-pills outline-active">
             <li class="nav-item">
@@ -43,9 +88,9 @@
         </div>
 
         <app-qualifier-list [limit]="10" [config]="listConfig"></app-qualifier-list>
-      </div>
+      </div> -->
 
-      <div class="col-md-3">
+<!--       <div class="col-md-3">
         <div class="sidebar">
           <p>Popular Tags</p>
 
@@ -65,8 +110,7 @@
             No tags are here... yet.
           </div>
         </div>
-      </div>
+      </div> -->
 
-    </div>
-  </div>
+   <!-- </div> -->
 </div>

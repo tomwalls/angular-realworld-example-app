@@ -39,4 +39,8 @@ export interface AutomatedBet {
 
 export interface Summary {
   selections: number;
+  wins: number;
+  strikeRate: number;
+  return: number;
+  profit: number;
 }

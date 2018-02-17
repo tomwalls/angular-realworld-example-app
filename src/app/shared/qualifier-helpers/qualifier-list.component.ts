@@ -6,6 +6,7 @@ import {NgbModule, NgbModal, ModalDismissReasons, NgbDateStruct, NgbCalendar} fr
 import {Subject} from 'rxjs/Subject';
 import {debounceTime} from 'rxjs/operator/debounceTime';
 import { Summary } from '../index';
+import { DecimalPipe } from '@angular/common';
 
 
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
