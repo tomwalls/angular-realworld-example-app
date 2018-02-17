@@ -70,3 +70,10 @@
   border-color: #333333;
 }
 
+.SummaryWrapper {
+  display: -webkit-inline-flex;
+}
+
+.SummaryBox {
+  padding: 10pt;
+}

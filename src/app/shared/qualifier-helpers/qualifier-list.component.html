@@ -26,6 +26,14 @@
 
 
 <div class="qualifier-preview">
+
+    <div *ngIf="summary" class="SummaryWrapper">
+      <div class="SummaryBox">{{ summary.selections }}</div>
+      <div class="SummaryBox">{{ summary.selections }}</div>
+      <div class="SummaryBox">{{ summary.selections }}</div>
+      <div class="SummaryBox">{{ summary.selections }}</div>
+    </div>
+
   <table style="width: 100%">
       <tr>
           <th *ngFor="let col of columns">

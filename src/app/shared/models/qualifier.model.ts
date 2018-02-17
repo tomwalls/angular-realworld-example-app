@@ -1,3 +1,8 @@
+export interface QualifierR {
+  systemQualifiers: Qualifier[],
+  qualifierSummary: Summary
+}
+
 export interface Qualifier {
   id: number;
   automatedBetTransactionId: number;
@@ -30,4 +35,8 @@ export interface AutomatedBet {
   status: string;
   placedDate: Date;
   FailureReason: string;
+}
+
+export interface Summary {
+  selections: number;
 }

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { ApiService } from './api.service';
 import { map } from 'rxjs/operators';
-import { Qualifier, QualifierListConfig } from '../models';
+import { Qualifier, QualifierR, QualifierListConfig } from '../models';
 import {NgbModule, NgbModal, ModalDismissReasons, NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class QualifiersService {
   startDateFormated: Date;
   endDateFormated: Date;
 
-  query(config: QualifierListConfig, startDate: NgbDateStruct, endDate: NgbDateStruct): Observable<{systemQualifiers: Qualifier[]}> {
+  query(config: QualifierListConfig, startDate: NgbDateStruct, endDate: NgbDateStruct): Observable<QualifierR> {
     // Convert any filters over to Angular's URLSearchParams
     const params = {};
 
@@ -42,15 +42,22 @@ export class QualifiersService {
       '/qualifier/search', {StartDate: this.startDateFormated, EndDate: this.endDateFormated})
   }
 
-  getAll( startDate: NgbDateStruct, endDate: NgbDateStruct): Observable<[Qualifier]> {
+  /* getAll( startDate: NgbDateStruct, endDate: NgbDateStruct): Observable<[Qualifier]> {
 
     this.startDateFormated = new Date(startDate.year + '-' + startDate.month + '-' + startDate.day + ' 00:00');
     this.endDateFormated = new Date(endDate.year + '-' + endDate.month + '-' + endDate.day + ' 23:59');
 
         return this.apiService.post('/qualifier/search', {StartDate: this.startDateFormated, EndDate: this.endDateFormated})
         .pipe(map(data => data));
+  } */
+
+  summary( startDate: NgbDateStruct, endDate: NgbDateStruct): Observable<[Qualifier]> {
+
+    this.startDateFormated = new Date(startDate.year + '-' + startDate.month + '-' + startDate.day + ' 00:00');
+    this.endDateFormated = new Date(endDate.year + '-' + endDate.month + '-' + endDate.day + ' 23:59');
+
+        return this.apiService.post('/qualifier/summary', {StartDate: this.startDateFormated, EndDate: this.endDateFormated})
+        .pipe(map(data => data));
   }
-
-
 
 }

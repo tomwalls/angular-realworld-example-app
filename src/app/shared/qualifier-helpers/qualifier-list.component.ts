@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Qualifier, QualifierListConfig } from '../models';
+import { Qualifier,QualifierR, QualifierListConfig } from '../models';
 import { QualifiersService, UserService } from '../services';
 import {NgbModule, NgbModal, ModalDismissReasons, NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 import {Subject} from 'rxjs/Subject';
 import {debounceTime} from 'rxjs/operator/debounceTime';
+import { Summary } from '../index';
 
 
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
@@ -81,6 +82,7 @@ export class QualifierListComponent {
   edited = false;
   query: QualifierListConfig;
   results: Qualifier[];
+  summary: Summary;
   loading = false;
   currentPage = 1;
   totalPages: Array<number> = [1];
@@ -94,6 +96,7 @@ export class QualifierListComponent {
   runQuery() {
     this.loading = true;
     this.results = [];
+    this.summary = null;
 
     // Create limit and offset filter (if necessary)
     if (this.limit) {
@@ -105,7 +108,9 @@ export class QualifierListComponent {
     .subscribe(data => {
       this.loading = false;
       console.log(data)
+      console.log(data.systemQualifiers)
       this.results = data.systemQualifiers;
+      this.summary = data.qualifierSummary;;
 
       // Used from http://www.jstips.co/en/create-range-0...n-easily-using-one-line/
       //this.totalPages = Array.from(new Array(Math.ceil(data.length / this.limit)), (val, index) => index + 1);

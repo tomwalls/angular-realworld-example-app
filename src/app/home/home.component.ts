@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
       this.qualifiersLoaded = true;
     }); */
 
-    /* this.tagsService.getAll()
+/*    this.tagsService.getAll()
     .subscribe(tags => {
       this.tags = tags;
       this.tagsLoaded = true;
