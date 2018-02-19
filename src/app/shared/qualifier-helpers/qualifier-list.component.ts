@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { Qualifier,QualifierR, QualifierListConfig } from '../models';
 import { QualifiersService, UserService } from '../services';
-import {NgbModule, NgbModal, ModalDismissReasons, NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
-import {Subject} from 'rxjs/Subject';
-import {debounceTime} from 'rxjs/operator/debounceTime';
+import { NgbModule, NgbModal, ModalDismissReasons, NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs/Subject';
+import { debounceTime } from 'rxjs/operator/debounceTime';
 import { Summary } from '../index';
 import { DecimalPipe } from '@angular/common';
 
@@ -83,14 +83,22 @@ export class QualifierListComponent {
   edited = false;
   query: QualifierListConfig;
   results: Qualifier[];
+  systems: string[];
   summary: Summary;
   loading = false;
   currentPage = 1;
   totalPages: Array<number> = [1];
   columns: string[] = ["Date", "Time", "Course", "System", "Horse", "Status", "Result", "Return", "", ""];
 
+  selectedSystem: string = "Select System...";
+
   setPageTo(pageNumber) {
     this.currentPage = pageNumber;
+    this.runQuery();
+  }
+
+  ChangeSystem(newSystem: string) {
+    this.selectedSystem = newSystem;
     this.runQuery();
   }
 
@@ -105,7 +113,15 @@ export class QualifierListComponent {
       this.query.filters.offset =  (this.limit * (this.currentPage - 1));
     }
 
-    this.qualifiersService.query(this.query, this.fromDate, this.toDate)
+    this.qualifiersService.getSystemNames()
+    .subscribe(data => {
+      this.loading = false;
+      console.log(data)
+      this.systems = data;
+    },
+    err => this.userService.purgeAuth());
+
+    this.qualifiersService.query(this.query, this.fromDate, this.toDate, this.selectedSystem)
     .subscribe(data => {
       this.loading = false;
       console.log(data)
@@ -118,6 +134,8 @@ export class QualifierListComponent {
     },
     err => this.userService.purgeAuth());
     ;
+
+
   }
 
   ToggleRangePicker()

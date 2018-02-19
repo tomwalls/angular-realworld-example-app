@@ -16,7 +16,7 @@ export class QualifiersService {
   startDateFormated: Date;
   endDateFormated: Date;
 
-  query(config: QualifierListConfig, startDate: NgbDateStruct, endDate: NgbDateStruct): Observable<QualifierR> {
+  query(config: QualifierListConfig, startDate: NgbDateStruct, endDate: NgbDateStruct, systemName: string): Observable<QualifierR> {
     // Convert any filters over to Angular's URLSearchParams
     const params = {};
 
@@ -39,7 +39,13 @@ export class QualifiersService {
 
     return this.apiService
     .post(
-      '/qualifier/search', {StartDate: this.startDateFormated, EndDate: this.endDateFormated})
+      '/qualifier/search', {StartDate: this.startDateFormated, EndDate: this.endDateFormated, systemName})
+  }
+
+  getSystemNames(): Observable<string[]> {
+
+        return this.apiService.get('/qualifier/systems')
+        .pipe(map(data => data));
   }
 
   /* getAll( startDate: NgbDateStruct, endDate: NgbDateStruct): Observable<[Qualifier]> {
