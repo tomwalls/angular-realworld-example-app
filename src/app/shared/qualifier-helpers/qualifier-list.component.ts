@@ -89,8 +89,9 @@ export class QualifierListComponent {
   currentPage = 1;
   totalPages: Array<number> = [1];
   columns: string[] = ["Date", "Time", "Course", "System", "Horse", "Status", "Result", "Return", "", ""];
-
+  modes: string[] = ["All", "Live", "Test"];
   selectedSystem: string = "Select System...";
+  selectedMode: string = "All";
 
   setPageTo(pageNumber) {
     this.currentPage = pageNumber;
@@ -100,6 +101,10 @@ export class QualifierListComponent {
   ChangeSystem(newSystem: string) {
     this.selectedSystem = newSystem;
     this.runQuery();
+  }
+
+  ChangeSystemMode(mode: string) {
+    this.selectedMode = mode;
   }
 
   runQuery() {
@@ -121,7 +126,7 @@ export class QualifierListComponent {
     },
     err => this.userService.purgeAuth());
 
-    this.qualifiersService.query(this.query, this.fromDate, this.toDate, this.selectedSystem)
+    this.qualifiersService.query(this.query, this.fromDate, this.toDate, this.selectedSystem, this.selectedMode)
     .subscribe(data => {
       this.loading = false;
       console.log(data)
